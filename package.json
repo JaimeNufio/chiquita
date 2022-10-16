@@ -1,0 +1,13 @@
+{
+  "name": "chiquita",
+  "version": "1.0.0",
+  "description": "Discord utility bot",
+  "main": "index.js",
+  "repository": "https://github.com/JaimeNufio/chiquita",
+  "author": "Jaime Nufio",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "discord.js": "^14.6.0"
+  }
+}
