@@ -20,7 +20,7 @@ module.exports = {
                     "description": "Can't update username, exceeds character limit of 32.",
                     "color": 15879747,
                     "author": {
-                        "name": `${interaction.member.nickname}`,
+                        "name": `${interaction.member.nickname}'s command failed.`,
                         "icon_url": `${interaction.user.displayAvatarURL({ dynamic: true })}`
                     },
                     "thumbnail": {
@@ -32,6 +32,28 @@ module.exports = {
                     },
                     "fields": []
                 }]})
+                return
+            }
+
+            if (target.username === interaction.member.user.username){
+                interaction.reply( {"embeds": [{
+                    "title": "Error: Can't nickname yourself!",
+                    "description": "We don't do that here. Try renaming someone else instead.",
+                    "color": 15879747,
+                    "author": {
+                        "name": `${interaction.member.nickname}'s command failed.`,
+                        "icon_url": `${interaction.user.displayAvatarURL({ dynamic: true })}`
+                    },
+                    "thumbnail": {
+                        "url": `${target.displayAvatarURL({ dynamic: true })}`
+                    },
+                    "footer": {
+                        "text": "If you think this is incorrect, bug Jaime.",
+                        "icon_url": ""
+                    },
+                    "fields": []
+                }]})
+                return
             }
 
             // try{
