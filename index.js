@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, GatewayIntentBits,commandBuilders } = require('discord.js');
 const { token } = require('./config.json');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -17,6 +17,9 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('Ready!');
+
+    //for deleteing all commands.
+    //client.application.commands.set([])
 });
 
 client.on('interactionCreate', async interaction => {
