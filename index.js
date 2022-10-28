@@ -1,9 +1,15 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, GatewayIntentBits,commandBuilders } = require('discord.js');
-const { token } = require('./config.json');
+const { Client, Collection, GatewayIntentBits, commandBuilders } = require('discord.js');
+const { token, silentGuildIds } = require('./config.json');
+const reactions = require('./triggered/reactions')
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+     intents: [
+        GatewayIntentBits.Guilds, 
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
+    ] });
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
@@ -36,5 +42,13 @@ client.on('interactionCreate', async interaction => {
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 });
+
+client.on('messageCreate', async message => {
+    if(message.author.bot) return; // no bots
+    // now checking per-reaction, per-trigger
+    // if (silentGuildIds.includes(message.guild.id)) return 
+
+    reactions.checkAll(client,message)
+})
 
 client.login(token);
