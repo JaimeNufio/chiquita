@@ -13,26 +13,30 @@ const client = new Client({
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js') && !(file.startsWith('_')));
 
 for (const file of commandFiles) {
-	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
+
+
+    const filePath = path.join(commandsPath, file);
+    const command = require(filePath);
+	
 	client.commands.set(command.data.name, command);
+    console.log("Added",command.data.name);
 }
 
 client.once('ready', () => {
 	console.log('Ready!');
 
-    //for deleteing all commands.
-    //client.application.commands.set([])
+    // for deleteing all commands.
+    // client.application.commands.set([])
 });
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
 	const command = client.commands.get(interaction.commandName);
-
+    console.log(interaction.commandName)
 	if (!command) return;
 
 	try {
@@ -45,8 +49,7 @@ client.on('interactionCreate', async interaction => {
 
 client.on('messageCreate', async message => {
     if(message.author.bot) return; // no bots
-    // now checking per-reaction, per-trigger
-    // if (silentGuildIds.includes(message.guild.id)) return 
+    // if (silentGuildIds.includes(message.guild.id)) return //checking per-reaction,
 
     reactions.checkAll(client,message)
 })
