@@ -16,6 +16,9 @@ module.exports = {
         try{
             //https://twitter.com/BlueEyed1412/status/1585020957898723328?s=20&t=WogKezvjXE0Ya27GcH6wXw
 
+
+            interaction.deferReply()
+
             urlArg = interaction.options.getString('url')
             const url = urlArg.split('?')[0]
 
@@ -42,7 +45,7 @@ module.exports = {
                     file.close();
                     console.log("Download Completed");
 
-                    await interaction.reply({
+                    await interaction.editReply({
                         "content": interaction.options.getString('caption')? `${interaction.user}: ${interaction.options.getString('caption')}` : "",
                         "embeds": [
                             {  
