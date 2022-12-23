@@ -43,13 +43,15 @@ class reactions {
     }
 
 
-    static checkAll(client,msg) {
+    static checkAll(client,msg,silentGuildIds) {
 
-        // if server isn't in 'silent' list
 
-        this.Yes(msg)
-        this.No(msg)
-        this.Kanye(msg)
+        if (!silentGuildIds.includes(msg.guild.id)) {
+
+            this.Yes(msg)
+            this.No(msg)
+            this.Kanye(msg)
+        }
 
         const target = msg.mentions.users.first()
         if (target === undefined) return
