@@ -9,12 +9,21 @@
   "private": false,
   "dependencies": {
     "discord.js": "^14.6.0",
+    "nodemon": "^2.0.20",
     "twitter-url-direct": "^1.0.7",
     "uuid": "^9.0.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "deleteCommands": "node deleteCommands.js",
-    "createCommands": "node deployCommands.js"
+    "createCommands": "node deployCommands.js",
+    "cleanStart": "node deleteCommands.js && node deployCommands.js && node index.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0"
   }
 }

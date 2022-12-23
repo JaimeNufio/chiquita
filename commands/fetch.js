@@ -8,7 +8,8 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('fetch')
 		.setDescription('Fetch TWITTER video at a url and post it as a file instead.')
-		.addStringOption(option => option.setName('url').setDescription('Url of video file.').setRequired(true))
+        .addStringOption(option => option.setName('url').setDescription('Url of video file.').setRequired(true))
+		.addBooleanOption(option => option.setName('spoiler').setDescription('Is this a spoiler?.').setRequired(false))
         .addStringOption(option => option.setName('caption').setDescription('Text to go along with the video.').setRequired(false)),
 	
         async execute(interaction) {
@@ -16,7 +17,11 @@ module.exports = {
         try{
             //https://twitter.com/BlueEyed1412/status/1585020957898723328?s=20&t=WogKezvjXE0Ya27GcH6wXw
 
+
+            interaction.deferReply()
+
             urlArg = interaction.options.getString('url')
+            shouldSpoiler = interaction.options.getString('spoiler')
             const url = urlArg.split('?')[0]
 
             let twitterResponse = await twitterGetUrl(url)
@@ -35,6 +40,17 @@ module.exports = {
             const file = fs.createWriteStream(downloadName);
 
             const request = await https.get(fileUrl, async function(response) {
+                console.log(response.headers)
+                console.log(response.headers['content-length'])
+
+                if (response.headers['content-length'] > 8000000){
+                    await interaction.editReply({
+                        "content": `Downloaded file is too big for discord, here's the original link: ${linkToTweet}` +
+                        interaction.options.getString('caption')? `${interaction.user}: ${interaction.options.getString('caption')}` : "" 
+                    })
+                    return
+                }
+
                 response.pipe(file);
 
                 // after download completed close filestream
@@ -42,7 +58,8 @@ module.exports = {
                     file.close();
                     console.log("Download Completed");
 
-                    await interaction.reply({
+
+                    await interaction.editReply({
                         "content": interaction.options.getString('caption')? `${interaction.user}: ${interaction.options.getString('caption')}` : "",
                         "embeds": [
                             {  
@@ -65,7 +82,7 @@ module.exports = {
                         
                         files:[{
                             attachment:`./${downloadName}`,
-                            name:'TwitterVideo.mp4'
+                            name:`${shouldSpoiler?"SPOILER_":""}TwitterVideo.mp4`
                         }]
                     })
                 await fs.unlinkSync(`./${downloadName}`)
