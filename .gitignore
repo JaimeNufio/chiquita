@@ -131,3 +131,5 @@ dist
 
 #security, todo add to github secrets
 config.json
+
+.youtube.com_cookies.txt
