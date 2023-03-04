@@ -2,6 +2,16 @@
 	"clientId": "",
 	"token": "",
 	"guildIds": [],
-	"silentGuildIds": []
+	"silentGuildIds": [],
+	"mainGuild":{
+		"channelId":""
+	},
+	"database":{
+		"user": "postgres",
+		"host": "",
+		"database": "",
+		"password": "",
+		"port": 5432
+	}
 }
 
