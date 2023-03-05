@@ -1,32 +1,19 @@
 {
-  "name": "chiquita",
+  "name": "chiquitabot",
   "version": "1.0.0",
-  "description": "Discord utility bot",
+  "description": "discord bot",
   "main": "index.js",
-  "repository": "https://github.com/JaimeNufio/chiquita",
-  "author": "Jaime Nufio",
+  "repository": "https://github.com/JaimeNufio/chiquita.git",
+  "author": "Jaime Nufio <jaimeenufio@gmail.com>",
   "license": "MIT",
-  "private": false,
-  "dependencies": {
-    "discord.js": "^14.6.0",
-    "nodemon": "^2.0.20",
-    "nvm": "^0.0.4",
-    "pg": "^8.9.0",
-    "twitter-url-direct": "^1.0.7",
-    "uuid": "^9.0.0"
-  },
   "scripts": {
-    "bot": "nodemon index.js",
-    "api": "nodemon db/api.js",
-    "deleteCommands": "node deleteCommands.js",
-    "createCommands": "node deployCommands.js",
-    "cleanStart": "node deleteCommands.js && node deployCommands.js && node index.js"
+    "app": "nodemon bot/index.js",
+    "api": "nodemon api/index.js",
+    "deleteCommands": "node bot/deleteCommands.js",
+    "createCommands": "node bot/deployCommands.js",
+    "cleanStart": "node bot/deleteCommands.js && node bot/deployCommands.js && node bot/index.js"
   },
-  "devDependencies": {
-    "eslint": "^8.0.1",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-promise": "^6.0.0"
+  "dependencies": {
+    "nodemon": "^2.0.21"
   }
 }

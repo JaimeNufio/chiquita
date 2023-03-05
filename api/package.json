@@ -1,0 +1,7 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "api for chiquita bot",
+  "main": "index.js",
+  "license": "MIT"
+}
