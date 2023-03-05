@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require('discord.js');
-const axios = require('axios')
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -56,20 +55,6 @@ module.exports = {
                 }]})
                 return
             }
-
-            axios.get('/new-nickname')
-                .then(function (response) {
-                    // handle success
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                })
-                .finally(function () {
-                    // always executed
-            });
-            
 
             userInGuild = (await interaction.guild.members.fetch(target.id)).setNickname(nickname)
             // console.log(userInGuild)
