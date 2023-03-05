@@ -12,12 +12,20 @@ class db {
             console.error('Unexpected error on idle client', err)
             process.exit(-1)
         })
+
+        console.log('pool created.')
     }
 
-    static async doQuery(query,queryParams) {
+    static async doQuery(queryString,queryObject) {
+
+        const queryParams = Object.values(queryObject)
+
+        // console.log(queryString)
+        // console.log(queryParams)
+
         const client = await this.pool.connect()
         try {
-          const res = await client.query('SELECT * FROM users WHERE id = $1', [1])
+          const res = await client.query(queryString, queryParams)
           return res
         } catch (err) {
           console.log(err.stack)

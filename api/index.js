@@ -1,7 +1,9 @@
 const express = require('express')
 const cors = require('cors')
+const db = require('./db')
 const app = express();
 
+db.createPool()
 app.use(cors())
 app.use(express.json())
 
@@ -17,11 +19,17 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/new-message',(req,res)=>{
-    console.log('new msg!')
-    return res.send('New Message')
+    db.doQuery('INSERT into messages (messageid, userid, guildid, channelid, timestamp, text) \
+    VALUES($1, $2, $3, $4, $5, $6)',
+    req.body)
+
+    return res.send('New Message Stored')
 })
 
 app.post('/new-nickname',(req,res)=>{
+    db.doQuery('INSERT into nicknames (oldname,newname,renamer,renamed,guildid,timestamp) \
+    VALUES($1, $2, $3, $4, $5, $6)',
+    req.body)
     return res.send('Posted')
 })
 

@@ -1,10 +1,10 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits, commandBuilders } = require('discord.js');
-const { token, silentGuildIds,mainGuild } = require('./config.json');
+const { token, silentGuildIds,mainGuild } = require('../config.json');
 const storageManager = require('./utils/modifyJson');
 const reactions = require('./triggered/reactions')
-const axios = require('axios')
+const axios = require('axios');
 
 const client = new Client({
      intents: [
@@ -56,17 +56,21 @@ client.on('messageCreate', async message => {
 
     if(message.author.bot) return; // no bots
 
-    await axios.post('http://localhost:5000/new-message')
-    .then(function (response) {
-        // handle success
-        console.log(response.data);
-    })
-    .catch(function (error) {
-        // handle error
-        console.log(error);
-    })
-    .finally(function () { console.log('axios block') });
-    
+    console.log(message)
+
+    try {
+        const messageData  = {
+            messageid:message.id,
+            userid:message.author.id,
+            guildid:message.guildId,
+            channelid:message.channelId,
+            timestamp:message.createdTimestamp,
+            text:message.content
+        }
+
+        await axios.post('http://localhost:5000/new-message', messageData)
+    } catch (error){ }
+
     reactions.checkAll(client,message,silentGuildIds)
 })
 

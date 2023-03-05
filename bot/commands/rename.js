@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const axios = require('axios');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -57,10 +58,8 @@ module.exports = {
             }
 
             userInGuild = (await interaction.guild.members.fetch(target.id)).setNickname(nickname)
-            // console.log(userInGuild)
+
             interaction.reply( {"embeds": [{
-                // "title": "Error: Nickname too long.",
-                // "description": "Can't update username, exceeds character limit of 32.",
                 "color": 39129,
                 "author": {
                     "name": `${interaction.member.nickname} renamed ${target.username}`,
@@ -69,10 +68,6 @@ module.exports = {
                 "thumbnail": {
                     "url": `${target.displayAvatarURL({ dynamic: true })}`
                 },
-                // "footer": {
-                //     "text": "If you think this is incorrect, bug Jaime.",
-                //     "icon_url": ""
-                // },
                 "fields": [
                     {
                         "name": "New Name",
@@ -86,6 +81,21 @@ module.exports = {
                     }
                 ]
             }]})
+
+
+            const nicknameData  = {
+                oldname:oldNickname,
+                newname:nickname,
+                renamer:interaction.member.user.id,
+                renamed:target.id,
+                guildid:interaction.guild.id,
+                timestamp:interaction.createdTimestamp,
+            }
+    
+            console.log(nicknameData)
+
+            await axios.post('http://localhost:5000/new-nickname', nicknameData)
+
 
             }catch (err){
                 // interaction.reply(err)
