@@ -44,7 +44,7 @@ client.on('interactionCreate', async interaction => {
         if (!command) return;
 
         try {
-            await command.execute(interaction);
+            await command.execute(interaction,client);
         } catch (error) {
             console.error(error);
             await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
@@ -56,7 +56,7 @@ client.on('messageCreate', async message => {
 
     if(message.author.bot) return; // no bots
 
-    console.log(message)
+    // console.log(message)
 
     try {
         const messageData  = {
@@ -65,7 +65,8 @@ client.on('messageCreate', async message => {
             guildid:message.guildId,
             channelid:message.channelId,
             timestamp:message.createdTimestamp,
-            text:message.content
+            text:message.content,
+            // originalMessage:message
         }
 
         await axios.post('http://localhost:5000/new-message', messageData)

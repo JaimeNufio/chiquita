@@ -12,6 +12,10 @@
 		"database": "",
 		"password": "",
 		"port": 5432
+	},
+	"chatgpt":{
+		"APIKey":"",
+		"organizationID":""
 	}
 }
 
