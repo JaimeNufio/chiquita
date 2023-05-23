@@ -12,6 +12,7 @@ module.exports = {
             try{
 
                 interaction.deferReply()
+                // interaction.editReply('Communicationg with ChatGPT...')
 
                 const text = interaction.options.getString('text')
                 const instruction = interaction.options.getString('instruction')
@@ -31,7 +32,7 @@ module.exports = {
 
                 const fields = [
                     {
-                        "name": "Original Text:",
+                        "name": `${interaction.user.nickname ?? interaction.user.username} said:`,
                         "value": `${text}`,
                         "inline": true
                     },
@@ -49,7 +50,7 @@ module.exports = {
 
                     fields.push(
                         {
-                            "name": i>0?'':'ChatGPT',
+                            "name": i>0?'':'ChatGPT replied:',
                             "value": snippet,
                         }
                     )
@@ -66,8 +67,12 @@ module.exports = {
                 interaction.editReply( {"embeds": [{
                     "color": 39129,
                     "author": {
-                        "name": `via ChatGPT`,
-                        "icon_url": `https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/2048px-ChatGPT_logo.svg.png`
+                        "name": `${interaction.user.nickname ?? interaction.user.username} prompted ${client.user.nickname ?? client.user.username} via ChatGPT...`,
+                        "icon_url": `${interaction.user.displayAvatarURL({ dynamic: true })}`
+                        // "icon_url": `https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/2048px-ChatGPT_logo.svg.png`
+                    },
+                    thumbnail:{
+                        'url':`https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/2048px-ChatGPT_logo.svg.png`
                     },
                     fields
                     
