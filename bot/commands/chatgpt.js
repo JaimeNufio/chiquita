@@ -3,7 +3,7 @@ const axios = require('axios');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('chatgpt-prompt')
+		.setName('chatgpt')
 		.setDescription('Prompt the machine.')
 		.addStringOption(option => option.setName('text').setDescription('Message to send ChatGPT.').setRequired(true)),
         // .addStringOption(option => option.setName('instruction').setDescription('Optional instruction for ChatGPT.').setRequired(false)),
