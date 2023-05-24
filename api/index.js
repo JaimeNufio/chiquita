@@ -45,7 +45,7 @@ app.post('/new-nickname', async (req,res)=>{
 app.post('/chatgpt', async (req,res)=>{
 
     try{
-        console.log('chatgpt', req.body)
+        // console.log('chatgpt', req.body)
 
         // const cleanName = req.body.name.replace(/^[a-zA-Z0-9_-]{1,64}$/g,'');
 
@@ -57,12 +57,13 @@ app.post('/chatgpt', async (req,res)=>{
                     }],
         })
 
-        console.log(response.data.choices)
+        // throw SyntaxError
+        return res.send({text:response.data.choices[0].message.content})
 
-        return res.send({choices:response.data.choices})
 
     }catch (err){
-        console.log(err.response)
+        console.log(err)
+        res.send({text:"Some error occured! "+err})
     }
 })
 

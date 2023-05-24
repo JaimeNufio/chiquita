@@ -3,10 +3,10 @@ const axios = require('axios');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('chatgpt')
-		.setDescription('Speak with the machine.')
-		.addStringOption(option => option.setName('text').setDescription('Message to send ChatGPT.').setRequired(true))
-        .addStringOption(option => option.setName('instruction').setDescription('Optional instruction for ChatGPT.').setRequired(false)),
+		.setName('chatgpt-prompt')
+		.setDescription('Prompt the machine.')
+		.addStringOption(option => option.setName('text').setDescription('Message to send ChatGPT.').setRequired(true)),
+        // .addStringOption(option => option.setName('instruction').setDescription('Optional instruction for ChatGPT.').setRequired(false)),
 	
         async execute(interaction,client) {
             try{
@@ -24,11 +24,8 @@ module.exports = {
                 
                 let output = ''
                 await axios.post('http://localhost:5000/chatgpt', body)
-                    .then((res)=>{output = res.data.choices[0].message.content})
+                    .then((res)=>{output = res.data.text})
                     .catch(err=>{console.log(err)})
-
-                console.log('output',output)
-
 
                 const fields = [
                     {
