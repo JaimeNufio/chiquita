@@ -28,18 +28,26 @@ app.get('/', async (req,res)=>{
 })
 
 app.post('/new-message', async  (req,res)=>{
-    db.doQuery('INSERT into messages (messageid, userid, guildid, channelid, timestamp, text) \
-    VALUES($1, $2, $3, $4, $5, $6)',
-    req.body)
+    try {
+        db.doQuery('INSERT into messages (messageid, userid, guildid, channelid, timestamp, text) \
+        VALUES($1, $2, $3, $4, $5, $6)',
+        req.body)
 
-    return res.send('New Message Stored')
+        return res.send('New Message Stored')
+    } catch {
+
+    }
 })
 
 app.post('/new-nickname', async (req,res)=>{
-    db.doQuery('INSERT into nicknames (oldname,newname,renamer,renamed,guildid,timestamp) \
-    VALUES($1, $2, $3, $4, $5, $6)',
-    req.body)
-    return res.send('Posted')
+    try {
+        db.doQuery('INSERT into nicknames (oldname,newname,renamer,renamed,guildid,timestamp) \
+        VALUES($1, $2, $3, $4, $5, $6)',
+        req.body)
+        return res.send('Posted')
+    } catch {
+
+    }
 })
 
 app.post('/chatgpt', async (req,res)=>{

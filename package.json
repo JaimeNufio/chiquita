@@ -11,7 +11,8 @@
     "api": "nodemon api/index.js",
     "deleteCommands": "node bot/deleteCommands.js",
     "createCommands": "node bot/deployCommands.js",
-    "cleanStart": "node bot/deleteCommands.js && node bot/deployCommands.js && node bot/index.js"
+    "cleanStart": "node bot/deleteCommands.js && node bot/deployCommands.js && node bot/index.js",
+    "up": "yarn cleanStart && yarn api"
   },
   "dependencies": {
     "cors": "^2.8.5",

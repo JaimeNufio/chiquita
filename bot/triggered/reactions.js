@@ -23,7 +23,7 @@ class reactions {
     }
 
     static HBD(msg,target){
-        const regex = new RegExp('(happy birthday|hbd)')
+        const regex = new RegExp('(happy|hbd|bday|congrats|feliz)')
         if (regex.test(msg.content.toLowerCase())){
 
             const n = this.randomIntFromInterval(100,120)
@@ -35,10 +35,30 @@ class reactions {
                 
             }
 
-            msg.reply(`***Happy Birthday ${target}!***`+
+            // msg.reply(`***Happy Birthday ${target}!***`+
+            msg.reply(`***${msg.content}!***`+
                 `\n${emojiBlock}`)
         }        
     }
+
+    static SemenJoke(msg,target){
+    const regex = new RegExp('^cum')
+    if (regex.test(msg.content.toLowerCase())){
+
+        const n = this.randomIntFromInterval(100,120)
+        const partyEmojis = ['🍆','💦','😳','💦','👀','<:ropes:1074411300807000074>','<:ropes:1074411300807000074>']
+        let emojiBlock = ''
+
+        for (let i = 0; i < n; i++){
+            emojiBlock+=partyEmojis[Math.floor(Math.random()*partyEmojis.length)]
+            
+        }
+
+        // msg.reply(`***Happy Birthday ${target}!***`+
+        msg.reply(`***${msg.content}!***`+
+            `\n${emojiBlock}`)
+    }        
+}
 
 
     static checkAll(client,msg,silentGuildIds) {
@@ -49,12 +69,17 @@ class reactions {
             this.Yes(msg)
             this.No(msg)
             this.Kanye(msg)
+
         }
 
         const target = msg.mentions.users.first()
         if (target === undefined) return
 
         this.HBD(msg,target)
+
+        if (!silentGuildIds.includes(msg.silentGuildIds)){
+            this.SemenJoke(msg,target)
+        }
 
 
     }

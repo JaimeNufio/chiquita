@@ -98,7 +98,7 @@ module.exports = {
 
 
             }catch (err){
-                // interaction.reply(err)
+                interaction.reply('Some error!'+err)
                 console.log(err)
             }
         },
