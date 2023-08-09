@@ -34,9 +34,7 @@ module.exports = {
                     "fields": []
                 }]})
                 return
-            }
-
-            if (target.username === interaction.member.user.username){
+            }else if (target.username === interaction.member.user.username){
                 interaction.reply( {"embeds": [{
                     "title": "Error: Can't nickname yourself!",
                     "description": "We don't do that here. Try renaming someone else instead.",
@@ -55,33 +53,34 @@ module.exports = {
                     "fields": []
                 }]})
                 return
-            }
+            }else{
 
-            userInGuild = (await interaction.guild.members.fetch(target.id)).setNickname(nickname)
+                userInGuild = (await interaction.guild.members.fetch(target.id)).setNickname(nickname)
 
-            interaction.reply( {"embeds": [{
-                "color": 39129,
-                "author": {
-                    "name": `${interaction.member.nickname} renamed ${target.username}`,
-                    "icon_url": `${interaction.user.displayAvatarURL({ dynamic: true })}`
-                },
-                "thumbnail": {
-                    "url": `${target.displayAvatarURL({ dynamic: true })}`
-                },
-                "fields": [
-                    {
-                        "name": "New Name",
-                        "value": `${nickname}`,
-                        "inline": true
+                interaction.reply( {"embeds": [{
+                    "color": 39129,
+                    "author": {
+                        "name": `${interaction.member.nickname} renamed ${target.username}`,
+                        "icon_url": `${interaction.user.displayAvatarURL({ dynamic: true })}`
                     },
-                    {
-                        "name": "Old Name",
-                        "value": `${oldNickname}`,
-                        "inline": true
-                    }
-                ]
-            }]})
+                    "thumbnail": {
+                        "url": `${target.displayAvatarURL({ dynamic: true })}`
+                    },
+                    "fields": [
+                        {
+                            "name": "New Name",
+                            "value": `${nickname}`,
+                            "inline": true
+                        },
+                        {
+                            "name": "Old Name",
+                            "value": `${oldNickname}`,
+                            "inline": true
+                        }
+                    ]
+                }]})
 
+            }
 
             const nicknameData  = {
                 oldname:oldNickname,
@@ -98,7 +97,7 @@ module.exports = {
 
 
             }catch (err){
-                interaction.reply('Some error!'+err)
+                // interaction.reply('Some error!'+err)
                 console.log(err)
             }
         },
