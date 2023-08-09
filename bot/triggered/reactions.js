@@ -8,6 +8,14 @@ class reactions {
         }
     }
 
+    static AHHMp4(msg){
+        const regex = new RegExp('^(a{2,}h{1,})|(ah{2,})$') 
+        if (regex.test(msg.content.toLowerCase())){
+            msg.react('<a:aaaaahh:851947388294004786>');
+        }
+    }
+
+
     static No(msg){
         const regex = new RegExp('^(no)(\.|!)?$') 
         if (regex.test(msg.content.toLowerCase())){
@@ -68,6 +76,7 @@ class reactions {
 
             this.Yes(msg)
             this.No(msg)
+            this.AHHMp4(msg)
             this.Kanye(msg)
 
         }
