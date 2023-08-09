@@ -38,17 +38,17 @@ client.on('interactionCreate', async interaction => {
 
     console.log("clicked",interaction.id)
 
-	if (interaction.isChatInputCommand()){
-        const command = client.commands.get(interaction.commandName);
-        console.log(interaction.commandName)
-        if (!command) return;
-
-        try {
+    try {
+        if (interaction.isChatInputCommand()){
+            const command = client.commands.get(interaction.commandName);
+            console.log(interaction.commandName)
+            if (!command) return;
             await command.execute(interaction,client);
-        } catch (error) {
-            console.error(error);
-            // await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
         }
+    } catch (error) {
+        console.log("UHOH")
+        console.error(error);
+        // await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
     }
 });
 
@@ -69,7 +69,7 @@ client.on('messageCreate', async message => {
             // originalMessage:message
         }
 
-        await axios.post('http://localhost:5000/new-message', messageData)
+        // await axios.post('http://localhost:5000/new-message', messageData)
     } catch (error){ }
 
     reactions.checkAll(client,message,silentGuildIds)

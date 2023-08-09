@@ -54,7 +54,6 @@ module.exports = {
                 }]})
                 return
             }else{
-
                 userInGuild = (await interaction.guild.members.fetch(target.id)).setNickname(nickname)
 
                 interaction.reply( {"embeds": [{
@@ -93,11 +92,12 @@ module.exports = {
     
             console.log(nicknameData)
 
-            await axios.post('http://localhost:5000/new-nickname', nicknameData)
+            // await axios.post('http://localhost:5000/new-nickname', nicknameData)
 
 
             }catch (err){
                 // interaction.reply('Some error!'+err)
+                console.log("FUCK")
                 console.log(err)
             }
         },
