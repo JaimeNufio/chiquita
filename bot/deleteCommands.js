@@ -1,7 +1,5 @@
-const fs = require('node:fs')
-const path = require('node:path')
 const { Client, GatewayIntentBits } = require('discord.js')
-const { token, silentGuildIds } = require('../config.json')
+const { token } = require('../config.json')
 const { exit } = require('node:process')
 
 const client = new Client({

@@ -57,7 +57,7 @@ module.exports = {
         })
         return
       } else {
-        userInGuild = (await interaction.guild.members.fetch(target.id)).setNickname(nickname).catch((error) => {})
+        (await interaction.guild.members.fetch(target.id)).setNickname(nickname).catch(() => {})
 
         interaction.reply({
           embeds: [{
