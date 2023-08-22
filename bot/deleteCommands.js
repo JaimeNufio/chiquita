@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits } = require('discord.js')
-const { token } = require('../config.json')
+const { token } = require(process.env.CONFIG_FILE)
 const { exit } = require('node:process')
 
 const client = new Client({
