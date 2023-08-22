@@ -1,28 +1,25 @@
-var fs = require('fs');
+const fs = require('fs')
 
 class modifyJson {
+  writeJson (filename, Obj) {
+    // const currentObj = this.readJson(filename)
 
-    writeJson(filename, Obj){
+    fs.writeFile(filename, JSON.stringify(Obj), function (err) {
+      if (err) {
+        console.log(err)
+      }
+    })
+  }
 
-        // const currentObj = this.readJson(filename)
+  readJson (filename) {
+    const currentFile = fs.readFile(filename, function (err) {
+      if (err) {
+        console.log(err)
+      }
+    })
 
-        fs.writeFile(filename, JSON.stringify(Obj), function(err) {
-            if (err) {
-                console.log(err);
-            }
-        });
-    }
-
-    readJson(filename){
-        const currentFile = fs.readFile(filename, function(err) {
-            if (err) {
-                console.log(err);
-            }
-        });
-
-        return JSON.parse(currentFile)
-    }
-
+    return JSON.parse(currentFile)
+  }
 }
 
 module.exports = modifyJson
