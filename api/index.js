@@ -1,6 +1,6 @@
 const express = require('express')
 const { Configuration, OpenAIApi } = require("openai");
-const { chatgpt} = require('../config.json');
+const { chatgpt} = require(`${process.env.CONFIG_FILE}`);
 const cors = require('cors')
 const db = require('./db')
 const app = express();

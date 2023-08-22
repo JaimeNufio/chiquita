@@ -1,5 +1,5 @@
 const { Pool } = require("pg");
-const { database} = require('../config.json');
+const { database} = require(`${process.env.CONFIG_FILE}`);
 
 class db {
 

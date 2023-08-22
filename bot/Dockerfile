@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as the base image
-FROM node:14
+FROM node:18
 
 # Set the working directory within the container
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 
 # Install project dependencies using Yarn
-RUN yarn install --ignore-engines
+RUN yarn install 
 
 # Copy the rest of the application code to the working directory
 COPY . .
@@ -19,4 +19,4 @@ COPY . .
 ENV CONFIG_FILE=LOREMIPSUM
 
 # Command to start your application
-CMD ["yarn", "CleanStart"]
+CMD ["yarn", "cleanStart"]
