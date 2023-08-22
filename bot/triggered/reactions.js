@@ -1,109 +1,92 @@
 class reactions {
-
-
-    static Yes(msg){
-        const regex = new RegExp('^(yes)(\.|!)?$') 
-        if (regex.test(msg.content.toLowerCase())){
-            msg.react('<:yes:617874534137069569>');
-        }
+  static Yes (msg) {
+    const regex = /^(yes)(.|!)?$/
+    if (regex.test(msg.content.toLowerCase())) {
+      msg.react('<:yes:617874534137069569>')
     }
+  }
 
-    static AHHMp4(msg){
-        const regex = new RegExp('^(a{2,}h{1,})|(ah{2,})$') 
-        if (regex.test(msg.content.toLowerCase())){
-            msg.react('<a:aaaaahh:851947388294004786>');
-        }
+  static AHHMp4 (msg) {
+    const regex = /^(a{2,}h{1,})|(ah{2,})$/
+    if (regex.test(msg.content.toLowerCase())) {
+      msg.react('<a:aaaaahh:851947388294004786>')
     }
+  }
 
-
-    static No(msg){
-        const regex = new RegExp('^(no)(\.|!)?$') 
-        if (regex.test(msg.content.toLowerCase())){
-            msg.react('<:no:617874534149914624>');
-        }
+  static No (msg) {
+    const regex = /^(no)(.|!)?$/
+    if (regex.test(msg.content.toLowerCase())) {
+      msg.react('<:no:617874534149914624>')
     }
+  }
 
-    static Kanye(msg){
-        const regex = new RegExp('^(.)*\sye\s(.)*$|(kanye)')
-        if (regex.test(msg.content.toLowerCase())){
-            msg.react('<:kanye:590902214327795742>')
-        }
+  static Kanye (msg) {
+    const regex = /^(.)*syes(.)*$|(kanye)/
+    if (regex.test(msg.content.toLowerCase())) {
+      msg.react('<:kanye:590902214327795742>')
     }
+  }
 
-    static HBD(msg,target){
-        const regex = new RegExp('(happy|hbd|bday|congrats|feliz)')
-        if (regex.test(msg.content.toLowerCase())){
+  static HBD (msg, target) {
+    const regex = /(happy|hbd|bday|congrats|feliz)/
+    if (regex.test(msg.content.toLowerCase())) {
+      const n = this.randomIntFromInterval(100, 120)
+      const partyEmojis = ['🎉', '✨', '🥳', '🎈', '🎇', '🎊', '🎆']
+      let emojiBlock = ''
 
-            const n = this.randomIntFromInterval(100,120)
-            const partyEmojis = ['🎉','✨','🥳','🎈','🎇','🎊','🎆']
-            let emojiBlock = ''
-
-            for (let i = 0; i < n; i++){
-                emojiBlock+=partyEmojis[Math.floor(Math.random()*partyEmojis.length)]
-                
-            }
-
-            // msg.reply(`***Happy Birthday ${target}!***`+
-            msg.reply(`***${msg.content}!***`+
-                `\n${emojiBlock}`)
-        }        
-    }
-
-    static SemenJoke(msg,target){
-    const regex = new RegExp('^cum')
-    if (regex.test(msg.content.toLowerCase())){
-
-        const n = this.randomIntFromInterval(100,120)
-        const partyEmojis = ['🍆','💦','😳','💦','👀','<:ropes:1074411300807000074>','<:ropes:1074411300807000074>']
-        let emojiBlock = ''
-
-        for (let i = 0; i < n; i++){
-            emojiBlock+=partyEmojis[Math.floor(Math.random()*partyEmojis.length)]
-            
-        }
-
-        // msg.reply(`***Happy Birthday ${target}!***`+
-        msg.reply(`***${msg.content}!***`+
-            `\n${emojiBlock}`)
-    }        
-}
-
-
-    static checkAll(client,msg,silentGuildIds) {
-
-
-        if (!silentGuildIds.includes(msg.guild.id)) {
-
-            this.Yes(msg)
-            this.No(msg)
-            this.AHHMp4(msg)
-            this.Kanye(msg)
-
-        }
-
-        const target = msg.mentions.users.first()
-        if (target === undefined) return
-
-        this.HBD(msg,target)
-
-        if (!silentGuildIds.includes(msg.silentGuildIds)){
-            this.SemenJoke(msg,target)
-        }
-
-
-    }
-
-
-    //util
-
-    static  randomIntFromInterval(min, max) { // min and max included 
-        return Math.floor(Math.random() * (max - min + 1) + min)
+      for (let i = 0; i < n; i++) {
+        emojiBlock += partyEmojis[Math.floor(Math.random() * partyEmojis.length)]
       }
 
+      // msg.reply(`***Happy Birthday ${target}!***`+
+      msg.reply(`***${msg.content}!***` +
+                `\n${emojiBlock}`)
+    }
+  }
+
+  static SemenJoke (msg, target) {
+    const regex = /^cum/
+    if (regex.test(msg.content.toLowerCase())) {
+      const n = this.randomIntFromInterval(100, 120)
+      const partyEmojis = ['🍆', '💦', '😳', '💦', '👀', '<:ropes:1074411300807000074>', '<:ropes:1074411300807000074>']
+      let emojiBlock = ''
+
+      for (let i = 0; i < n; i++) {
+        emojiBlock += partyEmojis[Math.floor(Math.random() * partyEmojis.length)]
+      }
+
+      // msg.reply(`***Happy Birthday ${target}!***`+
+      msg.reply(`***${msg.content}!***` +
+            `\n${emojiBlock}`)
+    }
+  }
+
+  static checkAll (client, msg, silentGuildIds) {
+    if (!silentGuildIds.includes(msg.guild.id)) {
+      this.Yes(msg)
+      this.No(msg)
+      this.AHHMp4(msg)
+      this.Kanye(msg)
+    }
+
+    const target = msg.mentions.users.first()
+    if (target === undefined) return
+
+    this.HBD(msg, target)
+
+    if (!silentGuildIds.includes(msg.silentGuildIds)) {
+      this.SemenJoke(msg, target)
+    }
+  }
+
+  // util
+
+  static randomIntFromInterval (min, max) { // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
 }
 
 module.exports = reactions
-
 
 /*
 
@@ -184,12 +167,12 @@ module.exports = reactions
            "https://www.youtube.com/watch?v=y3E1GDSzIak",
            "https://www.youtube.com/watch?v=hLf0-lro8X8",
            "https://www.youtube.com/watch?v=l1wHyMR_SCA",
-           "https://www.youtube.com/watch?v=N8NcQzMQN_U"           
+           "https://www.youtube.com/watch?v=N8NcQzMQN_U"
 
         ]
         for i in range(itt):
             sum += random.choice(items)+" "
-        
+
         sum+="\n"+random.choice(songs)
         await ctx.reply(sum)
 
@@ -201,12 +184,12 @@ module.exports = reactions
         items = [
             '🎇', '🎊','🎈','🎉','🎆','🍺','🥂'
         ]
-        songs = [        
+        songs = [
 
         ]
         for i in range(itt):
             sum += random.choice(items)+" "
-        
+
         await ctx.reply(sum)
 
         */
