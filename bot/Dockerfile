@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 
 # Install project dependencies using Yarn
-RUN yarn install
+RUN yarn install --ignore-engines
 
 # Copy the rest of the application code to the working directory
 COPY . .
@@ -19,4 +19,4 @@ COPY . .
 ENV CONFIG_FILE=LOREMIPSUM
 
 # Command to start your application
-CMD ["yarn", "cleanstart"]
+CMD ["yarn", "CleanStart"]
