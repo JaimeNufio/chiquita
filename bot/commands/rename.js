@@ -54,7 +54,7 @@ module.exports = {
                 }]})
                 return
             }else{
-                userInGuild = (await interaction.guild.members.fetch(target.id)).setNickname(nickname)
+                userInGuild = (await interaction.guild.members.fetch(target.id)).setNickname(nickname).catch((error) => {});
 
                 interaction.reply( {"embeds": [{
                     "color": 39129,
@@ -97,7 +97,6 @@ module.exports = {
 
             }catch (err){
                 // interaction.reply('Some error!'+err)
-                console.log("FUCK")
                 console.log(err)
             }
         },

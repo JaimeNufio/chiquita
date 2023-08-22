@@ -40,10 +40,10 @@ client.on('interactionCreate', async interaction => {
 
     try {
         if (interaction.isChatInputCommand()){
-            const command = client.commands.get(interaction.commandName);
+            const command = client.commands.get(interaction.commandName)
             console.log(interaction.commandName)
             if (!command) return;
-            await command.execute(interaction,client);
+            await command.execute(interaction,client)
         }
     } catch (error) {
         console.log("UHOH")
