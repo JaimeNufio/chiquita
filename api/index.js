@@ -1,6 +1,6 @@
 const express = require('express')
 const { Configuration, OpenAIApi } = require("openai");
-const { chatgpt} = require(`${process.env.CONFIG_FILE}`);
+const { chatgpt, server } = require(`${process.env.CONFIG_FILE}`);
 const cors = require('cors')
 const db = require('./db')
 const app = express();
@@ -53,9 +53,6 @@ app.post('/new-nickname', async (req,res)=>{
 app.post('/chatgpt', async (req,res)=>{
 
     try{
-        // console.log('chatgpt', req.body)
-
-        // const cleanName = req.body.name.replace(/^[a-zA-Z0-9_-]{1,64}$/g,'');
 
         const response = await openAI.createChatCompletion({
             model:'gpt-3.5-turbo',
@@ -75,6 +72,6 @@ app.post('/chatgpt', async (req,res)=>{
     }
 })
 
-app.listen(5000, () =>
-  console.log(`Example app listening on port 5000!`),
+app.listen(server.port, () =>
+  console.log(`Example app listening on port ${server.port}!`),
 );

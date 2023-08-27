@@ -16,7 +16,7 @@ COPY . .
 # # Expose the port your application runs on
 # EXPOSE 3000
 
-ENV CONFIG_FILE=LOREMIPSUM
+ENV CONFIG_FILE="LOREMIPSUM"
 
 # Command to start your application
 CMD ["yarn", "cleanStart"]

@@ -1,5 +1,5 @@
 const { Pool } = require("pg");
-const { database} = require(`${process.env.CONFIG_FILE}`);
+const { database } = require(`${process.env.CONFIG_FILE}`);
 
 class db {
 
@@ -19,9 +19,7 @@ class db {
     static async doQuery(queryString,queryObject) {
 
         const queryParams = Object.values(queryObject)
-
-        // console.log(queryString)
-        // console.log(queryParams)
+        console.log(queryString, queryParams)
 
         const client = await this.pool.connect()
         try {

@@ -19,7 +19,6 @@
   },
   "scripts": {
     "bot": "nodemon index.js",
-    "api": "nodemon db/api.js",
     "deleteCommands": "node deleteCommands.js",
     "createCommands": "node deployCommands.js",
     "cleanStart": "node deleteCommands.js && node deployCommands.js && node index.js"

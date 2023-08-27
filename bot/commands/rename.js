@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js')
+const { server } = require(`${process.env.CONFIG_FILE}`);
 const axios = require('axios')
 
 module.exports = {
@@ -96,7 +97,7 @@ module.exports = {
 
       console.log(nicknameData)
 
-      // await axios.post('http://localhost:5000/new-nickname', nicknameData)
+      // await axios.post(`${server.address}:${server.port}/new-nickname`, nicknameData)
     } catch (err) {
       // interaction.reply('Some error!'+err)
       console.log(err)
