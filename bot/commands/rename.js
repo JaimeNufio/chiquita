@@ -60,7 +60,9 @@ module.exports = {
       } else {
         (await interaction.guild.members.fetch(target.id)).setNickname(nickname).catch(() => {})
 
-        interaction.reply({
+        Interaction.response.defer()
+        asyncio.sleep()
+        Interaction.followup.reply({
           embeds: [{
             color: 39129,
             author: {
