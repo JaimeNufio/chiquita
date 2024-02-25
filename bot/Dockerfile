@@ -13,10 +13,5 @@ RUN yarn install
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# # Expose the port your application runs on
-# EXPOSE 3000
-
-ENV CONFIG_FILE="LOREMIPSUM"
-
 # Command to start your application
 CMD ["yarn", "cleanStart"]

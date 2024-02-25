@@ -1,0 +1,9 @@
+version: '3'
+services:
+  chiquita:
+    image: jaimenufio/chiquita:latest
+    volumes:
+      - /volume1/Projects/chiquita/config.json:/app/config.json
+    environment:
+      - CONFIG_FILE=/app/config.json
+    restart: always
