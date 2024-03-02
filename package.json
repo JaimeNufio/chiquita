@@ -13,7 +13,7 @@
     "createCommands": "node bot/deployCommands.js",
     "cleanStart": "node bot/deleteCommands.js && node bot/deployCommands.js && node bot/index.js",
     "up": "yarn cleanStart && yarn api",
-    "build-tag-push": "bash build_tag_push.sh"
+    "build-tag-push": "bash bot/build_tag_push.sh"
   },
   "dependencies": {
     "cors": "^2.8.5",

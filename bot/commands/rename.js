@@ -11,6 +11,7 @@ module.exports = {
 
   async execute (interaction) {
     try {
+      Interaction.response.defer()
       const target = interaction.options.getUser('target')
       const nickname = interaction.options.getString('nickname')
       const oldNickname = (await interaction.guild.members.fetch(target.id)).nickname
@@ -60,8 +61,7 @@ module.exports = {
       } else {
         (await interaction.guild.members.fetch(target.id)).setNickname(nickname).catch(() => {})
 
-        Interaction.response.defer()
-        asyncio.sleep()
+
         Interaction.followup.reply({
           embeds: [{
             color: 39129,
