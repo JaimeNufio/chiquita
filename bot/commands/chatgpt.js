@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js')
+const { server } = require('../../config.json') ?? require(`${process.env.CONFIG_FILE}`)
 const axios = require('axios')
 
 module.exports = {

@@ -1,7 +1,7 @@
 const fs = require('node:fs')
 const path = require('node:path')
 const { Client, Collection, GatewayIntentBits, commandBuilders } = require('discord.js')
-const { token, silentGuildIds, mainGuild } = require(`${process.env.CONFIG_FILE}`)
+const { token, silentGuildIds, mainGuild } = require('../config.json') ?? require(`${process.env.CONFIG_FILE}`)
 const storageManager = require('./utils/modifyJson')
 const reactions = require('./triggered/reactions')
 const axios = require('axios')
