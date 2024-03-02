@@ -71,7 +71,6 @@ module.exports = {
         .then((res) => { output = res.data.choices[0].message.content??"Test prompt"; dataRecieved = res.data })
         .catch(err => { console.log('error...') })
 
-      console.log(interaction.member)
 
       interaction.editReply({
         embeds: [
