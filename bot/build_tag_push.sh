@@ -6,7 +6,7 @@ TAG="latest"
 USERNAME="jaimenufio"
 
 # Step 1: Build Docker Image
-docker build -t $IMAGE_NAME:$TAG .
+docker build -t $IMAGE_NAME:$TAG -f ./bot/Dockerfile .
 
 # Step 2: Tag the Docker Image for Docker Hub
 docker tag $IMAGE_NAME:$TAG $USERNAME/$IMAGE_NAME:$TAG
