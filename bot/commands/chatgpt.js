@@ -77,7 +77,7 @@ module.exports = {
           {
             "type": "rich",
             "title": `${capitalizeFirstLetter(interaction.member.nickname ?? interaction.member.user.username)} Asked:`,
-            "description": `${prompt.length>80?`"${prompt}"`:(`"${prompt}"\n᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼᲼`)}`,
+            "description": `"${prompt}"``)}`,
             "color": interaction.member.user.accentColor ?? 0x48bdf0,
             "inline":true,
             "thumbnail": {
