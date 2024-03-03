@@ -1,0 +1,5 @@
+from root (~/chiquita):
+
+docker build -t chiquita:latest -f ./bot/Dockerfile .
+docker tag chiquita:latest jaimenufio/chiquita:latest
+docker push jaimenufio/chiquita:latest
