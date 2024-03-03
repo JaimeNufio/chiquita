@@ -2,8 +2,6 @@ const { SlashCommandBuilder } = require('discord.js')
 const { chatgpt } = require('../../config.json') ?? require(`${process.env.CONFIG_FILE}`)
 const axios = require('axios')
 
-
-
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
