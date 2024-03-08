@@ -32,7 +32,7 @@ module.exports = {
     
   async execute (interaction, client) {
     try {
-      interaction.deferReply()
+      await interaction.deferReply()
 
       const prompt = interaction.options.getString('prompt') ?? "hello world"
       const model =  interaction.options.getString('model') ?? "gpt-3.5-turbo"

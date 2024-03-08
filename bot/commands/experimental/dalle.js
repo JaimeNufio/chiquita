@@ -1,6 +1,6 @@
 const axios = require('axios');
 const fs = require('fs');
-const { chatgpt } = require('../../config.json') ?? require(`${process.env.CONFIG_FILE}`)
+const { chatgpt } = require('../../../config.json') ?? require(`${process.env.CONFIG_FILE}`)
 
 async function generateImageWithDALLE(prompt) {
     try {
