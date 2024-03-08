@@ -10,14 +10,15 @@ module.exports = {
     .addStringOption(option => option.setName('nickname').setDescription('The nickname to apply.').setRequired(true)),
 
   async execute (interaction) {
-    try {
-      Interaction.response.defer()
+    try {      
+      await interaction.deferReply()
+      
       const target = interaction.options.getUser('target')
       const nickname = interaction.options.getString('nickname')
       const oldNickname = (await interaction.guild.members.fetch(target.id)).nickname
 
       if (nickname.length > 32) {
-        interaction.reply({
+        interaction.editReply({
           embeds: [{
             title: 'Error: Nickname too long.',
             description: "Can't update username, exceeds character limit of 32.",
@@ -38,7 +39,7 @@ module.exports = {
         })
         return
       } else if (target.username === interaction.member.user.username) {
-        interaction.reply({
+        interaction.editReply({
           embeds: [{
             title: "Error: Can't nickname yourself!",
             description: "We don't do that here. Try renaming someone else instead.",
@@ -62,7 +63,7 @@ module.exports = {
         (await interaction.guild.members.fetch(target.id)).setNickname(nickname).catch(() => {})
 
 
-        Interaction.followup.reply({
+        interaction.editReply({
           embeds: [{
             color: 39129,
             author: {
